@@ -3,7 +3,10 @@ let app = express();
 
 app.get("/",function(req,res)
 {
-    res.send("Hello Express");
+    res.sendFile(__dirname+"/views/index.html",function(req,res)
+    {
+        console.log("File successfully sent");
+    });
 });
 
 
