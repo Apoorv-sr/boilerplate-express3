@@ -1,5 +1,6 @@
 let express = require('express');
 let app = express();
+require('dotenv').config();
 
 app.use("/public",express.static("public"));
 
@@ -17,8 +18,20 @@ let jsob={
 
 app.get("/json",function(req,res)
 {
-    res.json(jsob);
+    let temp=process.env.MESSAGE_STYLE;
+    if(temp==="uppercase")
+    {
+        res.json({message:"HELLO JSON"});
+    }
+    else
+    {
+        res.json(jsob);
+    }
+    
+    console.log(temp);
 });
+
+
 
 
 // console.log("myapp.js");
