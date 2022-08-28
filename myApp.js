@@ -11,6 +11,15 @@ app.get("/",function(req,res)
     });
 });
 
+let jsob={
+    message:"Hello json"
+}
+
+app.get("/json",function(req,res)
+{
+    res.json(jsob);
+});
+
 
 // console.log("myapp.js");
 
