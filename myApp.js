@@ -20,17 +20,28 @@ app.get("/",function(req,res)
     });
 });
 
-app.get("/now",function(req,res,next)
+app.get("/:word/echo",function(req,res)
         {
-          date=new Date();
-          req.time=date;
-          next();
-        },
-        function(req,res)
-        {   
-          res.json({time:req.time});
-        }
-       );
+          // console.log(req.params);
+          res.json({echo:req.params.word});
+        });
+
+
+
+
+
+
+// app.get("/now",function(req,res,next)
+//         {
+//           date=new Date();
+//           req.time=date;
+//           next();
+//         },
+//         function(req,res)
+//         {   
+//           res.json({time:req.time});
+//         }
+//        );
 
 // app.get("/json",methodPathIpLogger);
 // app.get("/json",function(req,res)
