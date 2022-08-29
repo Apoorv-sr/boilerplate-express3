@@ -2,12 +2,13 @@ const mySecret = process.env['MESSAGE_STYLE']
 let express = require('express');
 let app = express();
 require('dotenv').config();
+let date="";
 
-const methodPathIpLogger=function(req,res,next)
-  {
-    console.log(req.method+" "+req.path+" "+"-"+" "+req.ip);
-    next();
-  }
+// const methodPathIpLogger=function(req,res,next)
+//   {
+//     console.log(req.method+" "+req.path+" "+"-"+" "+req.ip);
+//     next();
+//   }
 
 app.use("/public",express.static("public"));
 
@@ -19,16 +20,28 @@ app.get("/",function(req,res)
     });
 });
 
-app.get("/json",methodPathIpLogger);
-app.get("/json",function(req,res)
+app.get("/now",function(req,res,next)
         {
-          let sample="Hello json";
-          if(mySecret==="uppercase")
-          {
-            sample=sample.toUpperCase();
-          }
-          res.json({message:sample});      
-        });
+          date=new Date();
+          req.time=date;
+          next();
+        },
+        function(req,res)
+        {   
+          res.json({time:req.time});
+        }
+       );
+
+// app.get("/json",methodPathIpLogger);
+// app.get("/json",function(req,res)
+//         {
+//           let sample="Hello json";
+//           if(mySecret==="uppercase")
+//           {
+//             sample=sample.toUpperCase();
+//           }
+//           res.json({message:sample});      
+//         });
 
 
  // app.get("/json",(req,res)=>{
