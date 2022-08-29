@@ -12,6 +12,11 @@ let date="";
 
 app.use("/public",express.static("public"));
 
+app.get("/name",function(req,res)
+        {
+          res.json({name:req.query.first+" "+req.query.last});
+        });
+
 app.get("/",function(req,res)
 {
     res.sendFile(__dirname+"/views/index.html",function(req,res)
