@@ -1,3 +1,4 @@
+const mySecret = process.env['MESSAGE_STYLE']
 let express = require('express');
 let app = express();
 require('dotenv').config();
@@ -12,25 +13,25 @@ app.get("/",function(req,res)
     });
 });
 
-let jsob={
-    message:"Hello json"
-}
-
 app.get("/json",function(req,res)
-{
-    let temp=process.env.MESSAGE_STYLE;
-    if(temp==="uppercase")
-    {
-        res.json({message:"HELLO JSON"});
-    }
-    else
-    {
-        res.json(jsob);
-    }
-    
-    console.log(temp);
-});
+        {
+          let sample="Hello json";
+          if(mySecret==="uppercase")
+          {
+            sample=sample.toUpperCase;
+          }
+          res.json({message:sample});      
+        });
 
+ // app.get("/json",(req,res)=>{
+ //   let resultMessage="Hello json";
+ //   if (process.env.MESSAGE_STYLE==="uppercase"){
+ //     resultMessage=resultMessage.toUpperCase();
+ //   }
+  
+ //   res.json({"message": resultMessage});
+                            
+ // });
 
 
 
