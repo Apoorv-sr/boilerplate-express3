@@ -3,25 +3,33 @@ let express = require('express');
 let app = express();
 require('dotenv').config();
 
+const methodPathIpLogger=function(req,res,next)
+  {
+    console.log(req.method+" "+req.path+" "+"-"+" "+req.ip);
+    next();
+  }
+
 app.use("/public",express.static("public"));
 
 app.get("/",function(req,res)
 {
     res.sendFile(__dirname+"/views/index.html",function(req,res)
     {
-        // console.log("File successfully sent");
+        // console.log(__dirname);
     });
 });
 
+app.get("/json",methodPathIpLogger);
 app.get("/json",function(req,res)
         {
           let sample="Hello json";
           if(mySecret==="uppercase")
           {
-            sample=sample.toUpperCase;
+            sample=sample.toUpperCase();
           }
           res.json({message:sample});      
         });
+
 
  // app.get("/json",(req,res)=>{
  //   let resultMessage="Hello json";
