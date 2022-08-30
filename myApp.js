@@ -17,10 +17,14 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use("/public",express.static("public"));
 
-// app.get("/name",function(req,res)
-//         {
-//           res.json({name:req.query.first+" "+req.query.last});
-//         });
+app.post("/name",function(req,res)
+        {
+          console.log(req.body);
+          // res.json({name:req.query.first+" "+req.query.last});
+          let firstName=req.body.first;
+          let lastName=req.body.last;
+          res.json({name:firstName+" "+lastName});
+        });
 
 app.get("/",function(req,res)
 {
